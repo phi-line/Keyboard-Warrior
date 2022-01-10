@@ -28,8 +28,10 @@ func load_level(path: String) -> void:
     # infer the level from the json
     var level := load_json_file(path)
     
+
     # abort program if level could not be loaded (check console for error)
-    if level == {}:
+    if level.empty():
+        print("Level is empty. Aborting...")
         get_tree().quit()
     
     # populate the attack sequence for the boss
