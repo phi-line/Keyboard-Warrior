@@ -13,5 +13,3 @@ data_*/
 # GIMP
 *.xcf
 
-# Build directory
-build/
