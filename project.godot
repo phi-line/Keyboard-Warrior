@@ -11,17 +11,31 @@ config_version=4
 [application]
 
 config/name="keyboard warrior"
-run/main_scene="res://main.tscn"
+run/main_scene="res://Main.tscn"
+
+[debug]
+
+gdscript/warnings/treat_warnings_as_errors=true
+gdscript/completion/autocomplete_setters_and_getters=true
+gdscript/warnings/unsafe_property_access=true
+gdscript/warnings/unsafe_method_access=true
+gdscript/warnings/unsafe_cast=true
+gdscript/warnings/unsafe_call_argument=true
 
 [display]
 
-window/size/width=512
-window/size/height=512
+window/size/width=800
+window/size/always_on_top=true
 
 [global]
 
 Displau=false
 Display=false
+
+[layer_names]
+
+2d_render/layer_1="walls"
+2d_render/layer_2="attacks"
 
 [physics]
 
@@ -32,3 +46,4 @@ common/enable_pause_aware_picking=true
 quality/driver/driver_name="GLES2"
 vram_compression/import_etc=true
 vram_compression/import_etc2=false
+misc/lossless_compression/force_png=true

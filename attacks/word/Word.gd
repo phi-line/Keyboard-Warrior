@@ -1,7 +1,14 @@
-extends Node2D
+extends KinematicBody2D
 
 # The word that is required to be typed
 export var word_source: String = ""
+
+# Min/Max speed range
+export var min_speed = 150
+export var max_speed = 250
+
+# The current velocity of the attack
+var velocity = Vector2()
 
 # The index of the current letter needed to finish this word
 var word_progress_iter: int = 0
@@ -11,7 +18,7 @@ var word_progress_repr: String = ""
 
 # The main formatter for the word. Use this to style how typed words
 # appear using BBCode formatting tags
-var format_word = "[color=blue]{progress}[/color]{remaining}"
+var format_word = "[color=blue]{progress}[/color][color=red]{remaining}[/color]"
 
 # centers text horizontally
 func format_center(text: String) -> String:
@@ -43,16 +50,17 @@ func update_word(check_input: String = "") -> void:
     word_progress_repr += check_input
     
     # finally, render the word with the updated progress
-    render_word(word_source, word_progress_repr)
+    render_word()
     
     if word_progress_iter == word_source.length():
         on_complete()
         
 
 # format and render a given word
-func render_word(word, progress) -> void:
-    $WordText.bbcode_text = format_center(
-        format_with_progress(word, progress)
+func render_word() -> void:
+    var word_text : RichTextLabel = $WordText
+    word_text.bbcode_text = format_center(
+        format_with_progress(word_source, word_progress_repr)
     )
 
 func on_complete() -> void:
@@ -61,12 +69,20 @@ func on_complete() -> void:
     
 
 # updates the word with the text provided to it in the editor (if any)
-func _ready():
-    render_word(word_source, word_progress_repr)
+func _ready() -> void:
+    render_word()
 
 # takes input from the keyboard and checks if the letter pressed was
 # required to progress the word towards completion
-func _input(event):
+func _input(event) -> void:
     if event is InputEventKey and event.pressed:
         # check if the currently typed character can progress this word
         update_word(char(event.unicode))
+
+# bounce on wall hit
+func _physics_process(delta):
+    var collision = move_and_collide(velocity * delta)
+    if collision:
+        velocity = velocity.bounce(collision.normal)
+        if collision.collider.has_method("hit"):
+            collision.collider.hit()
