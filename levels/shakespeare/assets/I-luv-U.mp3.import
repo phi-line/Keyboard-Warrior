@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/I-luv-U.mp3-ef2b85aac15e1bdaac0d65a7f33ab19e.mp3str"
+
+[deps]
+
+source_file="res://levels/shakespeare/assets/I-luv-U.mp3"
+dest_files=[ "res://.import/I-luv-U.mp3-ef2b85aac15e1bdaac0d65a7f33ab19e.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

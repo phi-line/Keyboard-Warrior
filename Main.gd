@@ -4,7 +4,7 @@ extends Node2D
 export var level_path: String
 
 # Word attack to spawn at scheduled intervals
-var Word := preload("res://attacks/word/Word.tscn")
+var Word := preload("res://attacks/bouncy/Bouncy.tscn")
 
 # local state for the words to spawn
 var attack_sequence := []
@@ -59,8 +59,8 @@ func _on_SpawnTimer_timeout() -> void:
     word.word_source = word_source
     add_child(word)
     
-    # set the mob's position to a random location.
-    word.position = WordSpawnLocation.position
+    # set the mob's position to the center
+    word.position = Vector2(400, 300)
     
     # calculate the mob's direction perpendicular to the path direction.
     # randomize it to create an angle 

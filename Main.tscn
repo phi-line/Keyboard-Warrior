@@ -1,9 +1,11 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://levels/shakespeare/shakespeare.tres" type="Theme" id=1]
+[ext_resource path="res://levels/shakespeare/assets/shakespeare.png" type="Texture" id=2]
 [ext_resource path="res://Main.gd" type="Script" id=3]
-[ext_resource path="res://assets/backdrop.png" type="Texture" id=4]
-[ext_resource path="res://assets/word.png" type="Texture" id=5]
+[ext_resource path="res://shared/assets/backdrop.png" type="Texture" id=4]
+[ext_resource path="res://shared/assets/word.png" type="Texture" id=5]
+[ext_resource path="res://levels/shakespeare/assets/I-luv-U.mp3" type="AudioStream" id=6]
 
 [sub_resource type="Curve2D" id=1]
 _data = {
@@ -37,7 +39,7 @@ curve = SubResource( 1 )
 position = Vector2( 112, 168 )
 
 [node name="SpawnTimer" type="Timer" parent="."]
-wait_time = 20.0
+wait_time = 10.0
 
 [node name="StartTimer" type="Timer" parent="."]
 one_shot = true
@@ -93,6 +95,21 @@ shape = SubResource( 5 )
 [node name="CollisionPolygon2D4" type="CollisionShape2D" parent="Stage/MSWordWindow/StaticBody2D"]
 position = Vector2( 63, 212 )
 shape = SubResource( 4 )
+
+[node name="Shakespeare" type="TextureRect" parent="."]
+margin_left = 672.0
+margin_top = 472.0
+margin_right = 744.0
+margin_bottom = 544.0
+texture = ExtResource( 2 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 6 )
+autoplay = true
 
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_SpawnTimer_timeout"]
 [connection signal="timeout" from="StartTimer" to="." method="_on_StartTimer_timeout"]

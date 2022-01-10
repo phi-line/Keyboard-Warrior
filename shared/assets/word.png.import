@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/word.png-63d0c6709d8e6ad8adb2e67db4db33e1.stex"
+path="res://.import/word.png-d7e9322a05679da69c12902e55fba7cd.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/word.png"
-dest_files=[ "res://.import/word.png-63d0c6709d8e6ad8adb2e67db4db33e1.stex" ]
+source_file="res://shared/assets/word.png"
+dest_files=[ "res://.import/word.png-d7e9322a05679da69c12902e55fba7cd.stex" ]
 
 [params]
 

@@ -3,13 +3,6 @@ extends KinematicBody2D
 # The word that is required to be typed
 export var word_source: String = ""
 
-# Min/Max speed range
-export var min_speed = 150
-export var max_speed = 250
-
-# The current velocity of the attack
-var velocity = Vector2()
-
 # The index of the current letter needed to finish this word
 var word_progress_iter: int = 0
 
@@ -62,6 +55,14 @@ func render_word() -> void:
     word_text.bbcode_text = format_center(
         format_with_progress(word_source, word_progress_repr)
     )
+    
+    var word_collision : CollisionShape2D = $HitBox
+    
+    var bbcode_hitbox_shape := RectangleShape2D.new()
+    bbcode_hitbox_shape.extents.x = word_text.get_size().x / 2
+    bbcode_hitbox_shape.extents.y = word_text.get_size().y / 2
+    word_collision.set_shape(bbcode_hitbox_shape)
+
 
 func on_complete() -> void:
     hide()
@@ -78,11 +79,3 @@ func _input(event) -> void:
     if event is InputEventKey and event.pressed:
         # check if the currently typed character can progress this word
         update_word(char(event.unicode))
-
-# bounce on wall hit
-func _physics_process(delta):
-    var collision = move_and_collide(velocity * delta)
-    if collision:
-        velocity = velocity.bounce(collision.normal)
-        if collision.collider.has_method("hit"):
-            collision.collider.hit()

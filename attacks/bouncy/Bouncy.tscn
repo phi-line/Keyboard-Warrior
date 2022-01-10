@@ -1,28 +1,28 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://attacks/word/Word.gd" type="Script" id=1]
+[ext_resource path="res://attacks/bouncy/Bouncy.gd" type="Script" id=1]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 100, 8 )
 
-[node name="Word" type="KinematicBody2D"]
+[node name="BouncyWord" type="KinematicBody2D"]
 position = Vector2( 400, 300 )
 z_index = 1
 collision_mask = 2
 script = ExtResource( 1 )
 word_source = "this is a test"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="HitBox" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
 
 [node name="WordText" type="RichTextLabel" parent="."]
 margin_left = -100.0
 margin_top = -8.0
 margin_right = 100.0
-margin_bottom = 8.0
+margin_bottom = 100.0
 bbcode_enabled = true
-bbcode_text = "[center]sample text[/center]"
-text = "sample text"
+bbcode_text = "[center]this is a test of some multi-line text[/center]"
+text = "this is a test of some multi-line text"
 scroll_active = false
 __meta__ = {
 "_edit_use_anchors_": false
