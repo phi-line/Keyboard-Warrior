@@ -1,6 +1,6 @@
 extends Node2D
 
-# json file to infer the level from
+# json file to surmise the level from
 export var level_path: String
 
 # Word attack to spawn at scheduled intervals
